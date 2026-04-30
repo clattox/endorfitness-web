@@ -53,7 +53,6 @@ export default function HomePage() {
   return (
     <div style={{ backgroundColor: darkBackground, minHeight: '100vh', color: 'white', fontFamily: 'system-ui, sans-serif', position: 'relative', overflowX: 'hidden' }}>
       
-      {/* Inyección de CSS de forma segura para TypeScript */}
       <style dangerouslySetInnerHTML={{ __html: `
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes scaleIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
@@ -77,19 +76,21 @@ export default function HomePage() {
         
         {!showForm ? (
           <div className="animate-fade">
-            <h1 style={{ fontSize: 'clamp(40px, 8vw, 80px)', fontWeight: '900', lineHeight: '1', marginBottom: '20px', textTransform: 'uppercase' }}>
+            <h1 style={{ fontSize: 'clamp(32px, 8vw, 80px)', fontWeight: '900', lineHeight: '1', marginBottom: '20px', textTransform: 'uppercase' }}>
               Potencia tu <span style={{ color: neonGreen, textShadow: `0 0 20px ${neonGreen}44` }}>Mente</span><br/>
               Entrena tu Cuerpo
             </h1>
             <p style={{ color: '#888', maxWidth: '600px', fontSize: '18px', marginBottom: '40px', margin: '0 auto 40px auto' }}>
-              El primer studio en Cañete que integra ciencia y movimiento para llevar tu rendimiento al siguiente nivel.
+              El primer studio en Cañete que integra entrenamiento inteligente para llevar tu rendimiento al siguiente nivel.
             </p>
             <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap', justifyContent: 'center' }}>
               <button onClick={() => setShowForm(true)} style={{ backgroundColor: neonGreen, color: 'black', padding: '18px 35px', borderRadius: '40px', fontWeight: '800', border: 'none', fontSize: '18px', cursor: 'pointer', boxShadow: `0 10px 30px ${neonGreen}33` }}>
                 REGISTRAR ASISTENCIA
               </button>
-              <a href="https://www.instagram.com/endorfitnesscanete/" target="_blank" style={{ backgroundColor: 'transparent', color: 'white', padding: '18px 35px', borderRadius: '40px', fontWeight: '800', textDecoration: 'none', fontSize: '18px', border: '2px solid rgba(255,255,255,0.2)' }}>
-                VER INSTAGRAM
+              <a href="https://www.instagram.com/endorfitness_/" target="_blank" style={{ 
+                backgroundColor: 'transparent', color: 'white', padding: '18px 35px', borderRadius: '40px', fontWeight: '800', textDecoration: 'none', fontSize: '18px', border: '2px solid rgba(255,255,255,0.2)', display: 'flex', alignItems: 'center', gap: '10px' 
+              }}>
+                📸 SIGUENOS EN INSTAGRAM
               </a>
             </div>
           </div>
@@ -102,11 +103,11 @@ export default function HomePage() {
                 </h2>
                 <div style={{ marginBottom: '20px' }}>
                   <label style={{ fontSize: '10px', color: '#666', fontWeight: '800', textTransform: 'uppercase', marginLeft: '5px' }}>Nombre Completo</label>
-                  <input name="nombre" required placeholder="Ej: Claudio Torres" style={{ width: '100%', backgroundColor: '#000', border: '1px solid #333', padding: '15px', borderRadius: '15px', color: 'white', marginTop: '5px', outline: 'none' }} />
+                  <input name="nombre" required placeholder="tu nombre" style={{ width: '100%', backgroundColor: '#000', border: '1px solid #333', padding: '15px', borderRadius: '15px', color: 'white', marginTop: '5px', outline: 'none' }} />
                 </div>
                 <div style={{ marginBottom: '30px' }}>
                   <label style={{ fontSize: '10px', color: '#666', fontWeight: '800', textTransform: 'uppercase', marginLeft: '5px' }}>Correo Electrónico</label>
-                  <input name="email" type="email" required placeholder="tu@email.com" style={{ width: '100%', backgroundColor: '#000', border: '1px solid #333', padding: '15px', borderRadius: '15px', color: 'white', marginTop: '5px', outline: 'none' }} />
+                  <input name="email" type="email" required placeholder="alumno@endorfitness.cl" style={{ width: '100%', backgroundColor: '#000', border: '1px solid #333', padding: '15px', borderRadius: '15px', color: 'white', marginTop: '5px', outline: 'none' }} />
                 </div>
                 <button disabled={loading} style={{ width: '100%', backgroundColor: neonGreen, color: 'black', padding: '18px', borderRadius: '15px', fontWeight: '800', border: 'none', cursor: 'pointer', fontSize: '16px' }}>
                   {loading ? 'SINCRONIZANDO...' : 'CONFIRMAR INGRESO'}
@@ -131,7 +132,7 @@ export default function HomePage() {
         {[
           { icon: '⚡', title: 'ALTO RENDIMIENTO', text: 'Programas diseñados para maximizar tus capacidades físicas mediante el control metabólico.' },
           { icon: '👥', title: 'STAFF EXPERTO', text: 'Atención personalizada con profesionales dedicados a guiar cada paso de tu entrenamiento.' },
-          { icon: '📍', title: 'UBICACIÓN', text: 'Serrano, Cañete. Un espacio equipado con tecnología para tu bienestar físico.' }
+          { icon: '📍', title: 'UBICACIÓN', text: 'Estamos en Cañete con un espacio equipado con tecnología para tu bienestar físico.' }
         ].map((item, i) => (
           <div key={i} style={{ padding: '40px', backgroundColor: '#0a0a0a', borderRadius: '30px', border: '1px solid #1a1a1a' }}>
             <div style={{ fontSize: '30px', marginBottom: '15px' }}>{item.icon}</div>

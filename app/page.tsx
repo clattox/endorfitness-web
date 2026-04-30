@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { createClient } from "@supabase/supabase-js";
 
-// ⚠️ Variables de entorno (Igual que en tu versión funcional)
+// ⚠️ Variables de entorno
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
@@ -19,7 +19,6 @@ export default function Home() {
   
   const neonGreen = '#39FF14';
 
-  // Temporizador para resetear la pantalla de éxito
   useEffect(() => {
     if (sent) {
       const timer = setTimeout(() => setSent(false), 6000);
@@ -42,14 +41,13 @@ export default function Home() {
         throw new Error("Faltan campos obligatorios");
       }
 
-      // ✅ BLOQUE DE BASE DE DATOS EXACTAMENTE IGUAL AL TUYO
       const { error } = await supabase
         .from("control_atencion")
         .insert([
           {
             nombre_usuario: nombre,
             email_usuario: email,
-            profesional_asignado: profesional, // <- Columna correcta respetada
+            profesional_asignado: profesional,
           },
         ]);
 
@@ -84,7 +82,6 @@ export default function Home() {
           </div>
 
           <div className="space-y-6 z-10">
-            {/* Tarjeta de Horarios */}
             <div className="bg-neutral-900/60 p-6 rounded-2xl border border-neutral-800 shadow-xl backdrop-blur-sm">
               <h3 className="text-[#39FF14] font-bold uppercase tracking-widest mb-3 flex items-center gap-2">
                 <span className="text-2xl">📅</span> Horarios Disponibles
@@ -96,7 +93,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Tarjeta de Cupos */}
             <div className="bg-[#39FF14]/10 p-6 rounded-2xl border border-[#39FF14]/30 backdrop-blur-sm">
               <div className="flex items-center gap-3">
                 <span className="text-3xl animate-pulse">🔥</span>
@@ -107,11 +103,10 @@ export default function Home() {
               </div>
             </div>
 
-{/* Contacto */}
+            {/* Contacto con WhatsApp */}
             <div className="pt-4 flex flex-col gap-3 text-neutral-400 text-sm font-medium">
               <p className="flex items-center gap-2"><span className="text-xl">📍</span> Serrano, Cañete</p>
               
-              {/* Botón de WhatsApp */}
               <a 
                 href="https://wa.me/56966862346?text=Hola!%20Me%20gustaría%20saber%20más%20sobre%20los%20planes%20y%20horarios%20de%20Endorfitness." 
                 target="_blank" 
@@ -124,6 +119,9 @@ export default function Home() {
                 </span>
               </a>
             </div>
+          </div>
+        </div>
+
         {/* LADO DERECHO: FORMULARIO DE REGISTRO */}
         <div className="lg:w-1/2 flex items-center justify-center p-6 bg-neutral-950 border-l border-neutral-900">
           <div className="w-full max-w-md p-8 rounded-3xl border border-neutral-800 bg-[#0a0a0a] shadow-2xl relative overflow-hidden">

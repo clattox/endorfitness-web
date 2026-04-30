@@ -1,19 +1,22 @@
-"use client";
-import { useState, useEffect } from "react";
-import { createClient } from "@supabase/supabase-js";
+'use client';
 
-// Credenciales de Supabase
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
+import { useState, useEffect } from 'react';
+import { createClient } from '@supabase/supabase-js';
+import Link from 'next/link';
+
+// Configuración de Supabase
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-export default function Home() {
+export default function HomePage() {
   const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
-  const [errorMsg, setErrorMsg] = useState("");
   const [showForm, setShowForm] = useState(false);
-
+  
   const neonGreen = '#39FF14';
+  const darkBackground = '#050505';
+  const cardBg = '#111';
 
   useEffect(() => {
     if (sent) {
@@ -28,7 +31,6 @@ export default function Home() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setLoading(true);
-    setErrorMsg("");
 
     try {
       const formData = new FormData(event.currentTarget);
@@ -41,101 +43,109 @@ export default function Home() {
       ]);
       if (error) throw error;
       setSent(true);
-    } catch (err: any) {
-      setErrorMsg("Error al registrar asistencia");
+    } catch (err) {
+      console.error(err);
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <main className="min-h-screen bg-black text-white font-sans relative overflow-hidden">
-      {/* Fondo con degradado radial */}
-      <div className="fixed inset-0 bg-[radial-gradient(circle_at_center,_#111_0%,_#000_100%)] z-0"></div>
+    <div style={{ backgroundColor: darkBackground, minHeight: '100vh', color: 'white', fontFamily: 'system-ui, sans-serif', position: 'relative', overflowX: 'hidden' }}>
       
-      {/* Navegación */}
-      <nav className="relative z-10 p-6 flex justify-between items-center max-w-7xl mx-auto">
-        <div className="flex items-center gap-2">
-          <span className="text-2xl">🧠</span>
-          <h1 className="text-xl font-black italic tracking-tighter uppercase">
-            STUDIO <span style={{ color: neonGreen }}>ENDORFITNESS</span>
-          </h1>
+      {/* Inyección de CSS de forma segura para TypeScript */}
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes scaleIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+        .animate-fade { animation: fadeIn 1s ease-out; }
+        .animate-scale { animation: scaleIn 0.3s ease-out; }
+      `}} />
+
+      {/* --- NAVEGACIÓN --- */}
+      <nav style={{ padding: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', maxWidth: '1200px', margin: '0 auto', position: 'relative', zIndex: 10 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <span style={{ fontSize: '24px' }}>🧠</span>
+          <span style={{ fontWeight: '800', letterSpacing: '1px' }}>STUDIO <span style={{ color: neonGreen }}>ENDORFITNESS</span></span>
         </div>
-        <button 
-          onClick={() => window.location.href='/Admin'}
-          className="text-[10px] font-bold border border-white/20 px-4 py-2 rounded-full hover:bg-white hover:text-black transition-all uppercase tracking-widest"
-        >
-          Acceso Staff
-        </button>
+        <Link href="/Admin" style={{ color: neonGreen, textDecoration: 'none', fontSize: '12px', fontWeight: '600', border: `1px solid ${neonGreen}44`, padding: '8px 16px', borderRadius: '20px', textTransform: 'uppercase' }}>
+          ACCESO STAFF
+        </Link>
       </nav>
 
-      {/* Contenido Principal */}
-      <div className="relative z-10 flex flex-col items-center justify-center min-h-[80vh] px-6 text-center">
+      {/* --- CONTENIDO PRINCIPAL --- */}
+      <main style={{ minHeight: '80vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center', padding: '40px 20px', background: `radial-gradient(circle at center, ${neonGreen}08 0%, transparent 70%)` }}>
+        
         {!showForm ? (
-          <div className="animate-in fade-in slide-in-from-bottom-4 duration-1000">
-            <h2 className="text-5xl md:text-8xl font-black uppercase italic tracking-tighter leading-none mb-4">
-              POTENCIA TU <span style={{ color: neonGreen }}>MENTE</span><br />
-              ENTRENA TU CUERPO
-            </h2>
-            <p className="text-neutral-500 text-sm md:text-lg max-w-2xl mx-auto mb-10 tracking-wide uppercase font-medium">
+          <div className="animate-fade">
+            <h1 style={{ fontSize: 'clamp(40px, 8vw, 80px)', fontWeight: '900', lineHeight: '1', marginBottom: '20px', textTransform: 'uppercase' }}>
+              Potencia tu <span style={{ color: neonGreen, textShadow: `0 0 20px ${neonGreen}44` }}>Mente</span><br/>
+              Entrena tu Cuerpo
+            </h1>
+            <p style={{ color: '#888', maxWidth: '600px', fontSize: '18px', marginBottom: '40px', margin: '0 auto 40px auto' }}>
               El primer studio en Cañete que integra ciencia y movimiento para llevar tu rendimiento al siguiente nivel.
             </p>
-            <div className="flex flex-col md:flex-row gap-4 justify-center">
-              <button 
-                onClick={() => setShowForm(true)}
-                className="bg-[#39FF14] text-black px-10 py-5 rounded-full font-black uppercase tracking-tighter hover:scale-105 transition-all shadow-[0_10px_30px_rgba(57,255,20,0.3)]"
-              >
+            <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap', justifyContent: 'center' }}>
+              <button onClick={() => setShowForm(true)} style={{ backgroundColor: neonGreen, color: 'black', padding: '18px 35px', borderRadius: '40px', fontWeight: '800', border: 'none', fontSize: '18px', cursor: 'pointer', boxShadow: `0 10px 30px ${neonGreen}33` }}>
                 REGISTRAR ASISTENCIA
               </button>
-              <a 
-                href="https://www.instagram.com/endorfitness_/" 
-                target="_blank"
-                className="bg-transparent border border-white/20 px-10 py-5 rounded-full font-black uppercase tracking-tighter hover:bg-white hover:text-black transition-all flex items-center justify-center no-underline"
-              >
+              <a href="https://www.instagram.com/endorfitnesscanete/" target="_blank" style={{ backgroundColor: 'transparent', color: 'white', padding: '18px 35px', borderRadius: '40px', fontWeight: '800', textDecoration: 'none', fontSize: '18px', border: '2px solid rgba(255,255,255,0.2)' }}>
                 VER INSTAGRAM
               </a>
             </div>
           </div>
         ) : (
-          /* Formulario de Registro */
-          <div className="w-full max-w-md bg-neutral-900/50 backdrop-blur-xl p-8 rounded-[40px] border border-neutral-800 shadow-2xl animate-in zoom-in-95 duration-300">
+          <div className="animate-scale" style={{ width: '100%', maxWidth: '400px', backgroundColor: cardBg, padding: '40px', borderRadius: '30px', border: '1px solid #222', textAlign: 'left' }}>
             {!sent ? (
-              <form onSubmit={handleSubmit} className="text-left space-y-5">
-                <h3 className="text-2xl font-black uppercase italic mb-6">Confirmar <span style={{ color: neonGreen }}>Ingreso</span></h3>
-                <div>
-                  <label className="text-[10px] font-bold text-neutral-500 uppercase ml-1">Nombre Alumno</label>
-                  <input name="nombre" required placeholder="Nombre completo" className="w-full bg-black/50 p-4 mt-1 rounded-2xl border border-neutral-800 outline-none focus:border-[#39FF14] transition-all text-white" />
+              <form onSubmit={handleSubmit}>
+                <h2 style={{ fontSize: '24px', fontWeight: '900', marginBottom: '30px', textTransform: 'uppercase' }}>
+                  Confirmar <span style={{ color: neonGreen }}>Ingreso</span>
+                </h2>
+                <div style={{ marginBottom: '20px' }}>
+                  <label style={{ fontSize: '10px', color: '#666', fontWeight: '800', textTransform: 'uppercase', marginLeft: '5px' }}>Nombre Completo</label>
+                  <input name="nombre" required placeholder="Ej: Claudio Torres" style={{ width: '100%', backgroundColor: '#000', border: '1px solid #333', padding: '15px', borderRadius: '15px', color: 'white', marginTop: '5px', outline: 'none' }} />
                 </div>
-                <div>
-                  <label className="text-[10px] font-bold text-neutral-500 uppercase ml-1">Email</label>
-                  <input name="email" type="email" required placeholder="tu@email.com" className="w-full bg-black/50 p-4 mt-1 rounded-2xl border border-neutral-800 outline-none focus:border-[#39FF14] transition-all text-white" />
+                <div style={{ marginBottom: '30px' }}>
+                  <label style={{ fontSize: '10px', color: '#666', fontWeight: '800', textTransform: 'uppercase', marginLeft: '5px' }}>Correo Electrónico</label>
+                  <input name="email" type="email" required placeholder="tu@email.com" style={{ width: '100%', backgroundColor: '#000', border: '1px solid #333', padding: '15px', borderRadius: '15px', color: 'white', marginTop: '5px', outline: 'none' }} />
                 </div>
-                <button disabled={loading} className="w-full bg-[#39FF14] text-black py-5 rounded-2xl font-black uppercase tracking-tighter mt-4 disabled:opacity-50 transition-all hover:bg-white">
-                  {loading ? "Sincronizando..." : "CONFIRMAR"}
+                <button disabled={loading} style={{ width: '100%', backgroundColor: neonGreen, color: 'black', padding: '18px', borderRadius: '15px', fontWeight: '800', border: 'none', cursor: 'pointer', fontSize: '16px' }}>
+                  {loading ? 'SINCRONIZANDO...' : 'CONFIRMAR INGRESO'}
                 </button>
-                <button type="button" onClick={() => setShowForm(false)} className="w-full text-xs text-neutral-500 uppercase font-bold tracking-widest mt-4 hover:text-white border-none bg-transparent cursor-pointer">
-                  Volver
+                <button type="button" onClick={() => setShowForm(false)} style={{ width: '100%', background: 'none', border: 'none', color: '#555', marginTop: '15px', fontSize: '12px', fontWeight: '700', cursor: 'pointer', textTransform: 'uppercase' }}>
+                  Volver atrás
                 </button>
               </form>
             ) : (
-              <div className="py-10 text-center animate-in fade-in duration-500">
-                <span className="text-6xl block mb-4">✅</span>
-                <h3 className="text-2xl font-black uppercase italic">¡Ingreso Exitoso!</h3>
-                <p className="text-[#39FF14] text-sm font-bold mt-2 italic tracking-widest">Dalo todo en la clase 💪🏻</p>
+              <div style={{ textAlign: 'center', padding: '40px 0' }}>
+                <div style={{ fontSize: '50px', marginBottom: '20px' }}>✅</div>
+                <h2 style={{ fontWeight: '900', textTransform: 'uppercase' }}>¡Registro Exitoso!</h2>
+                <p style={{ color: neonGreen, fontWeight: '700', marginTop: '10px' }}>Dalo todo en la clase 💪🏻</p>
               </div>
             )}
           </div>
         )}
-      </div>
+      </main>
 
-      {/* Botón WhatsApp Flotante */}
-      <a 
-        href="https://wa.me/56966862346" 
-        target="_blank" 
-        className="fixed bottom-8 right-8 z-50 bg-[#25D366] p-4 rounded-full shadow-lg hover:scale-110 transition-all flex items-center justify-center text-white text-2xl no-underline"
-      >
-        💬
+      {/* --- SECCIÓN DE VALORES --- */}
+      <section style={{ maxWidth: '1200px', margin: '0 auto', padding: '60px 20px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '30px' }}>
+        {[
+          { icon: '⚡', title: 'ALTO RENDIMIENTO', text: 'Programas diseñados para maximizar tus capacidades físicas mediante el control metabólico.' },
+          { icon: '👥', title: 'STAFF EXPERTO', text: 'Atención personalizada con profesionales dedicados a guiar cada paso de tu entrenamiento.' },
+          { icon: '📍', title: 'UBICACIÓN', text: 'Serrano, Cañete. Un espacio equipado con tecnología para tu bienestar físico.' }
+        ].map((item, i) => (
+          <div key={i} style={{ padding: '40px', backgroundColor: '#0a0a0a', borderRadius: '30px', border: '1px solid #1a1a1a' }}>
+            <div style={{ fontSize: '30px', marginBottom: '15px' }}>{item.icon}</div>
+            <h3 style={{ color: neonGreen, marginBottom: '10px', fontSize: '14px', fontWeight: '800' }}>{item.title}</h3>
+            <p style={{ color: '#666', fontSize: '14px', lineHeight: '1.6' }}>{item.text}</p>
+          </div>
+        ))}
+      </section>
+
+      {/* --- BOTÓN WHATSAPP --- */}
+      <a href="https://wa.me/56966862346" target="_blank" style={{ position: 'fixed', bottom: '30px', right: '30px', backgroundColor: '#25D366', width: '60px', height: '60px', borderRadius: '50%', display: 'flex', justifyContent: 'center', alignItems: 'center', textDecoration: 'none', boxShadow: '0 10px 20px rgba(0,0,0,0.3)', zIndex: 100 }}>
+        <span style={{ fontSize: '30px' }}>💬</span>
       </a>
-    </main>
+
+    </div>
   );
 }

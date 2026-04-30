@@ -107,14 +107,23 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Contacto */}
-            <div className="pt-4 flex flex-col gap-2 text-neutral-400 text-sm font-medium">
+{/* Contacto */}
+            <div className="pt-4 flex flex-col gap-3 text-neutral-400 text-sm font-medium">
               <p className="flex items-center gap-2"><span className="text-xl">📍</span> Serrano, Cañete</p>
-              <p className="flex items-center gap-2"><span className="text-xl">📞</span> +569 66862346</p>
+              
+              {/* Botón de WhatsApp */}
+              <a 
+                href="https://wa.me/56966862346?text=Hola!%20Me%20gustaría%20saber%20más%20sobre%20los%20planes%20y%20horarios%20de%20Endorfitness." 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 hover:text-[#39FF14] transition-colors w-fit"
+              >
+                <span className="text-xl">💬</span> 
+                <span className="underline underline-offset-4 decoration-neutral-700 hover:decoration-[#39FF14]">
+                  Escríbenos al +569 66862346
+                </span>
+              </a>
             </div>
-          </div>
-        </div>
-
         {/* LADO DERECHO: FORMULARIO DE REGISTRO */}
         <div className="lg:w-1/2 flex items-center justify-center p-6 bg-neutral-950 border-l border-neutral-900">
           <div className="w-full max-w-md p-8 rounded-3xl border border-neutral-800 bg-[#0a0a0a] shadow-2xl relative overflow-hidden">
@@ -141,9 +150,6 @@ export default function Home() {
                   <label className="text-[10px] font-bold text-[#39FF14] uppercase ml-1 tracking-wider">Profesional Asignado</label>
                   <select name="profesional" className="w-full bg-black p-4 mt-1 rounded-xl border border-neutral-800 outline-none focus:border-[#39FF14] appearance-none text-white cursor-pointer">
                     <option value="Cata">Cata</option>
-                    <option value="Andrés">Andrés</option>
-                    <option value="Moti">Moti</option>
-                    <option value="Eli Torres">Eli Torres</option>
                   </select>
                 </div>
 

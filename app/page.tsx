@@ -1,9 +1,10 @@
-'use client';
+ 'use client';
 
 import { useState, useEffect } from 'react';
 import { createClient } from '@supabase/supabase-js';
 import Link from 'next/link';
 
+// Configuración de Supabase
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
@@ -14,7 +15,7 @@ export default function HomePage() {
   const [showForm, setShowForm] = useState(false);
   
   const neonGreen = '#39FF14';
-  const mainPink = '#FF2EAB'; // El rosado de la imagen de referencia
+  const mainPink = '#FF2EAB'; 
   const darkBackground = '#050505';
 
   useEffect(() => {
@@ -106,7 +107,7 @@ export default function HomePage() {
         </div>
       </header>
 
-      {/* --- SECCIÓN PLANES (Basada en tu imagen) --- */}
+      {/* --- SECCIÓN PLANES --- */}
       <section style={{ maxWidth: '1200px', margin: '0 auto', padding: '100px 20px' }}>
         <h2 className="outline-text" style={{ textAlign: 'center', fontSize: '50px', fontWeight: '900', marginBottom: '60px', textTransform: 'uppercase', letterSpacing: '2px' }}>
           PLANES PRESENCIALES
@@ -115,7 +116,7 @@ export default function HomePage() {
           {[
             { img: '/Images/gym-local2.jpeg', title: 'ENTRENAMIENTO GRUPAL', text: 'Entrena con rutinas planificadas mensualmente acompañada de mujeres tan power como tú.' },
             { img: '/Images/gym-local3.jpeg', title: 'ENTRENAMIENTO PERSONALIZADO', text: 'Entrena con un plan 100% diseñado para ti, tus metas y tu ritmo. Sesiones uno a uno con un coach.' },
-            { img: '/Images/gym-local4.jpeg', title: 'ASESORÍA NUTRICIONAL', text: 'Alcanza tus objetivos con un plan guía pensado para tu estilo de vida y acompañamiento profesional.' }
+            { img: '/Images/gym-local6.jpeg', title: 'CLASES Y PERSONALIZADOS DE KICKBOXING', text: 'Martes y jueves 18:00!' }
           ].map((plan, i) => (
             <div key={i} style={{ textAlign: 'left' }}>
               <img src={plan.img} alt={plan.title} style={{ width: '100%', borderRadius: '30px', height: '400px', objectFit: 'cover', marginBottom: '25px' }} />
@@ -126,7 +127,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* --- RECONSTRUCCIÓN DE LAS CASILLAS (Valores) --- */}
+      {/* --- CASILLAS DE VALORES --- */}
       <section style={{ backgroundColor: '#0a0a0a', padding: '80px 20px', borderTop: '1px solid #111' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '30px' }}>
           {[

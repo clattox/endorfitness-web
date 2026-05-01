@@ -1,4 +1,4 @@
- 'use client';
+'use client';
 
 import { useState, useEffect } from 'react';
 import { createClient } from '@supabase/supabase-js';
@@ -14,9 +14,10 @@ export default function HomePage() {
   const [sent, setSent] = useState(false);
   const [showForm, setShowForm] = useState(false);
   
+  // Colores oficiales de Endorfitness
   const neonGreen = '#39FF14';
-  const mainPink = '#FF2EAB'; 
   const darkBackground = '#050505';
+  const cardBg = '#111';
 
   useEffect(() => {
     if (sent) {
@@ -38,7 +39,7 @@ export default function HomePage() {
         {
           nombre_usuario: formData.get("nombre"),
           email_usuario: formData.get("email"),
-          profesional_asignado: "Cata",
+          profesional_asignado: "Cata", // Control de usuarios para Cata
         },
       ]);
       if (error) throw error;
@@ -57,7 +58,7 @@ export default function HomePage() {
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         .animate-fade { animation: fadeIn 0.8s ease-out; }
         .hero-overlay { background: linear-gradient(to bottom, rgba(5,5,5,0.7) 0%, rgba(5,5,5,0.9) 100%); }
-        .outline-text { -webkit-text-stroke: 1px ${mainPink}; color: transparent; }
+        .outline-text { -webkit-text-stroke: 1px ${neonGreen}; color: transparent; }
       `}} />
 
       {/* --- NAVEGACIÓN --- */}
@@ -88,7 +89,7 @@ export default function HomePage() {
               </button>
             </>
           ) : (
-            <div style={{ width: '100%', maxWidth: '400px', backgroundColor: '#111', padding: '40px', borderRadius: '30px', border: '1px solid #222', textAlign: 'left', margin: '0 auto' }}>
+            <div style={{ width: '100%', maxWidth: '400px', backgroundColor: cardBg, padding: '40px', borderRadius: '30px', border: '1px solid #222', textAlign: 'left', margin: '0 auto' }}>
               {!sent ? (
                 <form onSubmit={handleSubmit}>
                   <h2 style={{ fontSize: '20px', fontWeight: '900', marginBottom: '30px', textTransform: 'uppercase' }}>Confirmar <span style={{ color: neonGreen }}>Ingreso</span></h2>
@@ -107,7 +108,7 @@ export default function HomePage() {
         </div>
       </header>
 
-      {/* --- SECCIÓN PLANES --- */}
+      {/* --- SECCIÓN PLANES (Colores Unificados) --- */}
       <section style={{ maxWidth: '1200px', margin: '0 auto', padding: '100px 20px' }}>
         <h2 className="outline-text" style={{ textAlign: 'center', fontSize: '50px', fontWeight: '900', marginBottom: '60px', textTransform: 'uppercase', letterSpacing: '2px' }}>
           PLANES PRESENCIALES
@@ -120,7 +121,7 @@ export default function HomePage() {
           ].map((plan, i) => (
             <div key={i} style={{ textAlign: 'left' }}>
               <img src={plan.img} alt={plan.title} style={{ width: '100%', borderRadius: '30px', height: '400px', objectFit: 'cover', marginBottom: '25px' }} />
-              <h3 style={{ color: mainPink, fontSize: '28px', fontWeight: '900', marginBottom: '15px', lineHeight: '1.1' }}>{plan.title}</h3>
+              <h3 style={{ color: neonGreen, fontSize: '28px', fontWeight: '900', marginBottom: '15px', lineHeight: '1.1' }}>{plan.title}</h3>
               <p style={{ color: '#aaa', fontSize: '16px', lineHeight: '1.6' }}>{plan.text}</p>
             </div>
           ))}
@@ -135,7 +136,7 @@ export default function HomePage() {
             { icon: '👥', title: 'STAFF EXPERTO', text: 'Atención personalizada con profesionales dedicados a guiar cada paso de tu entrenamiento.' },
             { icon: '📍', title: 'ESTAMOS EN CAÑETE', text: 'Un espacio equipado con tecnología de punta para tu bienestar físico y mental.' }
           ].map((item, i) => (
-            <div key={i} style={{ padding: '40px', backgroundColor: '#111', borderRadius: '30px', border: '1px solid #222' }}>
+            <div key={i} style={{ padding: '40px', backgroundColor: cardBg, borderRadius: '30px', border: '1px solid #222' }}>
               <div style={{ fontSize: '30px', marginBottom: '15px' }}>{item.icon}</div>
               <h3 style={{ color: neonGreen, marginBottom: '10px', fontSize: '14px', fontWeight: '800', textTransform: 'uppercase' }}>{item.title}</h3>
               <p style={{ color: '#666', fontSize: '14px', lineHeight: '1.6' }}>{item.text}</p>

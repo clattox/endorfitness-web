@@ -56,7 +56,16 @@ export default function HomePage() {
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         .animate-fade { animation: fadeIn 0.8s ease-out; }
         .hero-overlay { background: linear-gradient(to bottom, rgba(5,5,5,0.7) 0%, rgba(5,5,5,0.9) 100%); }
-        .outline-text { -webkit-text-stroke: 1px ${neonGreen}; color: transparent; }
+        .modern-title { 
+          font-size: clamp(35px, 6vw, 60px); 
+          font-weight: 950; 
+          text-transform: uppercase; 
+          color: ${neonGreen}; 
+          letter-spacing: -2px;
+          line-height: 0.9;
+          margin-bottom: 60px;
+          text-align: center;
+        }
         .pill-whatsapp { transition: transform 0.3s ease, box-shadow 0.3s ease; }
         .pill-whatsapp:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4); }
       `}} />
@@ -105,26 +114,22 @@ export default function HomePage() {
         </div>
       </header>
 
-      {/* --- NUEVA SECCIÓN: MÁS QUE UN STUDIO (Casillas) --- */}
+      {/* --- SECCIÓN: MÁS QUE UN STUDIO (Iconos) --- */}
       <section style={{ padding: '80px 20px', backgroundColor: '#080808' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto', textAlign: 'center' }}>
-          <h2 style={{ fontSize: '40px', fontWeight: '900', textTransform: 'uppercase', marginBottom: '15px' }}>
+          <h2 style={{ fontSize: '32px', fontWeight: '900', textTransform: 'uppercase', marginBottom: '60px' }}>
             MÁS QUE UN <span style={{ color: neonGreen }}>STUDIO</span>
           </h2>
-          <p style={{ color: '#888', maxWidth: '700px', margin: '0 auto 60px' }}>
-            Aquí no solo entrenas, aquí te transformas. **Endorfitness** es un espacio creado para quienes buscan resultados reales, con un ambiente profesional y enfocado en el bienestar integral.
-          </p>
-          
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '30px' }}>
             {[
-              { icon: '🤍', title: 'TU ESPACIO SEGURO', text: 'Entrena con confianza y enfoque. Un ambiente diseñado para que te sientas cómoda y respetada en cada sesión.' },
-              { icon: '📅', title: 'GESTIÓN INTELIGENTE', text: 'Tu cupo está asegurado. Gracias a nuestro sistema de registro, optimizamos los horarios para evitar aglomeraciones.' },
-              { icon: '✨', title: 'COMUNIDAD ACTIVA', text: 'No entrenas sola. Únete a un grupo que te motiva, te inspira y celebra cada uno de tus progresos diarios.' },
-              { icon: '📋', title: 'PLANES GUIADOS', text: 'Entrena con propósito. Contamos con programas adaptados a tu capacidad y objetivos, guiados por expertos paso a paso.' }
+              { icon: '🤍', title: 'ESPACIO SEGURO', text: 'Entrena sin presiones en un ambiente diseñado para tu comodidad y respeto.' },
+              { icon: '📅', title: 'SISTEMA DE HORARIOS', text: 'Cupos asegurados mediante nuestro sistema flexible de registro inteligente.' },
+              { icon: '✨', title: 'COMUNIDAD', text: 'No entrenas sola, te integras a un grupo que celebra cada uno de tus avances.' },
+              { icon: '📋', title: 'PLANIFICACIÓN', text: 'Entrena con propósito bajo la guía de profesionales en cada paso.' }
             ].map((box, i) => (
-              <div key={i} style={{ textAlign: 'center', padding: '20px' }}>
+              <div key={i} style={{ textAlign: 'center' }}>
                 <div style={{ fontSize: '40px', marginBottom: '20px' }}>{box.icon}</div>
-                <h3 style={{ fontSize: '18px', fontWeight: '900', marginBottom: '15px', color: 'white' }}>{box.title}</h3>
+                <h3 style={{ fontSize: '16px', fontWeight: '900', marginBottom: '15px', color: 'white' }}>{box.title}</h3>
                 <p style={{ color: '#666', fontSize: '14px', lineHeight: '1.6' }}>{box.text}</p>
               </div>
             ))}
@@ -134,8 +139,8 @@ export default function HomePage() {
 
       {/* --- SECCIÓN PLANES --- */}
       <section style={{ maxWidth: '1200px', margin: '0 auto', padding: '100px 20px' }}>
-        <h2 className="outline-text" style={{ textAlign: 'center', fontSize: '50px', fontWeight: '900', marginBottom: '60px', textTransform: 'uppercase', letterSpacing: '2px' }}>
-          PLANES PRESENCIALES
+        <h2 className="modern-title">
+          PLANES<br/>PRESENCIALES
         </h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '40px' }}>
           {[
@@ -152,27 +157,33 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* --- BOTÓN WHATSAPP RENOVADO --- */}
+      {/* --- RECONSTRUCCIÓN DE CASILLAS ORIGINALES --- */}
+      <section style={{ backgroundColor: '#0a0a0a', padding: '80px 20px', borderTop: '1px solid #111' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '30px' }}>
+          {[
+            { icon: '⚡', title: 'ALTO RENDIMIENTO', text: 'Programas diseñados para maximizar tus capacidades físicas mediante el control metabólico.' },
+            { icon: '👥', title: 'STAFF EXPERTO', text: 'Atención personalizada con profesionales dedicados a guiar cada paso de tu entrenamiento.' },
+            { icon: '📍', title: 'ESTAMOS EN CAÑETE', text: 'Un espacio equipado con tecnología de punta para tu bienestar físico y mental.' }
+          ].map((item, i) => (
+            <div key={i} style={{ padding: '40px', backgroundColor: cardBg, borderRadius: '30px', border: '1px solid #222' }}>
+              <div style={{ fontSize: '30px', marginBottom: '15px' }}>{item.icon}</div>
+              <h3 style={{ color: neonGreen, marginBottom: '10px', fontSize: '14px', fontWeight: '800', textTransform: 'uppercase' }}>{item.title}</h3>
+              <p style={{ color: '#666', fontSize: '14px', lineHeight: '1.6' }}>{item.text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* --- BOTÓN WHATSAPP --- */}
       <a 
         href="https://wa.me/56966862346" 
         target="_blank" 
         className="pill-whatsapp"
         style={{ 
-          position: 'fixed', 
-          bottom: '30px', 
-          right: '30px', 
-          backgroundColor: '#25D366', 
-          padding: '12px 24px',
-          borderRadius: '50px',
-          display: 'flex', 
-          justifyContent: 'center', 
-          alignItems: 'center', 
-          gap: '12px',
-          textDecoration: 'none', 
-          zIndex: 100, 
-          boxShadow: '0 10px 20px rgba(0,0,0,0.3)',
-          color: 'white',
-          fontWeight: '700'
+          position: 'fixed', bottom: '30px', right: '30px', backgroundColor: '#25D366', 
+          padding: '12px 24px', borderRadius: '50px', display: 'flex', justifyContent: 'center', 
+          alignItems: 'center', gap: '12px', textDecoration: 'none', zIndex: 100, 
+          boxShadow: '0 10px 20px rgba(0,0,0,0.3)', color: 'white', fontWeight: '700' 
         }}
       >
         <span style={{ fontSize: '24px' }}>💬</span>

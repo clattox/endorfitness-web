@@ -1,10 +1,9 @@
-'use client';
+ 'use client';
 
 import { useState, useEffect } from 'react';
 import { createClient } from '@supabase/supabase-js';
 import Link from 'next/link';
 
-// Configuración de Supabase
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
@@ -14,7 +13,6 @@ export default function HomePage() {
   const [sent, setSent] = useState(false);
   const [showForm, setShowForm] = useState(false);
   
-  // Colores oficiales de Endorfitness
   const neonGreen = '#39FF14';
   const darkBackground = '#050505';
   const cardBg = '#111';
@@ -39,7 +37,7 @@ export default function HomePage() {
         {
           nombre_usuario: formData.get("nombre"),
           email_usuario: formData.get("email"),
-          profesional_asignado: "Cata", // Control de usuarios para Cata
+          profesional_asignado: "Cata",
         },
       ]);
       if (error) throw error;
@@ -59,6 +57,8 @@ export default function HomePage() {
         .animate-fade { animation: fadeIn 0.8s ease-out; }
         .hero-overlay { background: linear-gradient(to bottom, rgba(5,5,5,0.7) 0%, rgba(5,5,5,0.9) 100%); }
         .outline-text { -webkit-text-stroke: 1px ${neonGreen}; color: transparent; }
+        .pill-whatsapp { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .pill-whatsapp:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4); }
       `}} />
 
       {/* --- NAVEGACIÓN --- */}
@@ -81,15 +81,12 @@ export default function HomePage() {
               <h1 style={{ fontSize: 'clamp(40px, 8vw, 80px)', fontWeight: '900', textTransform: 'uppercase', lineHeight: '1', marginBottom: '20px' }}>
                 Potencia tu <span style={{ color: neonGreen }}>Mente</span><br/>Entrena tu Cuerpo
               </h1>
-              <p style={{ color: '#ccc', maxWidth: '600px', margin: '0 auto 40px', fontSize: '18px' }}>
-                Integrando entrenamiento inteligente para llevar tu rendimiento al siguiente nivel.
-              </p>
               <button onClick={() => setShowForm(true)} style={{ backgroundColor: neonGreen, color: 'black', padding: '18px 35px', borderRadius: '40px', fontWeight: '800', border: 'none', cursor: 'pointer' }}>
                 REGISTRAR ASISTENCIA
               </button>
             </>
           ) : (
-            <div style={{ width: '100%', maxWidth: '400px', backgroundColor: cardBg, padding: '40px', borderRadius: '30px', border: '1px solid #222', textAlign: 'left', margin: '0 auto' }}>
+            <div style={{ width: '100%', maxWidth: '400px', backgroundColor: '#111', padding: '40px', borderRadius: '30px', border: '1px solid #222', textAlign: 'left', margin: '0 auto' }}>
               {!sent ? (
                 <form onSubmit={handleSubmit}>
                   <h2 style={{ fontSize: '20px', fontWeight: '900', marginBottom: '30px', textTransform: 'uppercase' }}>Confirmar <span style={{ color: neonGreen }}>Ingreso</span></h2>
@@ -108,16 +105,43 @@ export default function HomePage() {
         </div>
       </header>
 
-      {/* --- SECCIÓN PLANES (Colores Unificados) --- */}
+      {/* --- NUEVA SECCIÓN: MÁS QUE UN STUDIO (Casillas) --- */}
+      <section style={{ padding: '80px 20px', backgroundColor: '#080808' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', textAlign: 'center' }}>
+          <h2 style={{ fontSize: '40px', fontWeight: '900', textTransform: 'uppercase', marginBottom: '15px' }}>
+            MÁS QUE UN <span style={{ color: neonGreen }}>STUDIO</span>
+          </h2>
+          <p style={{ color: '#888', maxWidth: '700px', margin: '0 auto 60px' }}>
+            Aquí no solo entrenas, aquí te transformas. **Endorfitness** es un espacio creado para quienes buscan resultados reales, con un ambiente profesional y enfocado en el bienestar integral.
+          </p>
+          
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '30px' }}>
+            {[
+              { icon: '🤍', title: 'TU ESPACIO SEGURO', text: 'Entrena con confianza y enfoque. Un ambiente diseñado para que te sientas cómoda y respetada en cada sesión.' },
+              { icon: '📅', title: 'GESTIÓN INTELIGENTE', text: 'Tu cupo está asegurado. Gracias a nuestro sistema de registro, optimizamos los horarios para evitar aglomeraciones.' },
+              { icon: '✨', title: 'COMUNIDAD ACTIVA', text: 'No entrenas sola. Únete a un grupo que te motiva, te inspira y celebra cada uno de tus progresos diarios.' },
+              { icon: '📋', title: 'PLANES GUIADOS', text: 'Entrena con propósito. Contamos con programas adaptados a tu capacidad y objetivos, guiados por expertos paso a paso.' }
+            ].map((box, i) => (
+              <div key={i} style={{ textAlign: 'center', padding: '20px' }}>
+                <div style={{ fontSize: '40px', marginBottom: '20px' }}>{box.icon}</div>
+                <h3 style={{ fontSize: '18px', fontWeight: '900', marginBottom: '15px', color: 'white' }}>{box.title}</h3>
+                <p style={{ color: '#666', fontSize: '14px', lineHeight: '1.6' }}>{box.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* --- SECCIÓN PLANES --- */}
       <section style={{ maxWidth: '1200px', margin: '0 auto', padding: '100px 20px' }}>
         <h2 className="outline-text" style={{ textAlign: 'center', fontSize: '50px', fontWeight: '900', marginBottom: '60px', textTransform: 'uppercase', letterSpacing: '2px' }}>
           PLANES PRESENCIALES
         </h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '40px' }}>
           {[
-            { img: '/Images/gym-local2.jpeg', title: 'ENTRENAMIENTO GRUPAL', text: 'Entrena con rutinas planificadas mensualmente acompañada de mujeres tan power como tú.' },
-            { img: '/Images/gym-local3.jpeg', title: 'ENTRENAMIENTO PERSONALIZADO', text: 'Entrena con un plan 100% diseñado para ti, tus metas y tu ritmo. Sesiones uno a uno con un coach.' },
-            { img: '/Images/gym-local6.jpeg', title: 'CLASES Y PERSONALIZADOS DE KICKBOXING', text: 'Martes y jueves 18:00!' }
+            { img: '/Images/gym-local2.jpeg', title: 'ENTRENAMIENTO GRUPAL', text: 'Entrena con rutinas planificadas mensualmente acompañada de personas con tu misma energía.' },
+            { img: '/Images/gym-local3.jpeg', title: 'ENTRENAMIENTO PERSONALIZADO', text: 'Un plan 100% diseñado para tus metas y tu ritmo, con atención exclusiva de un profesional.' },
+            { img: '/Images/gym-local6.jpeg', title: 'KICKBOXING STUDIO', text: 'Clases y personalizados los martes y jueves a las 18:00. ¡Ven a liberar toda tu energía!' }
           ].map((plan, i) => (
             <div key={i} style={{ textAlign: 'left' }}>
               <img src={plan.img} alt={plan.title} style={{ width: '100%', borderRadius: '30px', height: '400px', objectFit: 'cover', marginBottom: '25px' }} />
@@ -128,26 +152,31 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* --- CASILLAS DE VALORES --- */}
-      <section style={{ backgroundColor: '#0a0a0a', padding: '80px 20px', borderTop: '1px solid #111' }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '30px' }}>
-          {[
-            { icon: '⚡', title: 'ALTO RENDIMIENTO', text: 'Programas diseñados para maximizar tus capacidades físicas mediante el control metabólico.' },
-            { icon: '👥', title: 'STAFF EXPERTO', text: 'Atención personalizada con profesionales dedicados a guiar cada paso de tu entrenamiento.' },
-            { icon: '📍', title: 'ESTAMOS EN CAÑETE', text: 'Un espacio equipado con tecnología de punta para tu bienestar físico y mental.' }
-          ].map((item, i) => (
-            <div key={i} style={{ padding: '40px', backgroundColor: cardBg, borderRadius: '30px', border: '1px solid #222' }}>
-              <div style={{ fontSize: '30px', marginBottom: '15px' }}>{item.icon}</div>
-              <h3 style={{ color: neonGreen, marginBottom: '10px', fontSize: '14px', fontWeight: '800', textTransform: 'uppercase' }}>{item.title}</h3>
-              <p style={{ color: '#666', fontSize: '14px', lineHeight: '1.6' }}>{item.text}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* --- BOTÓN WHATSAPP --- */}
-      <a href="https://wa.me/56966862346" target="_blank" style={{ position: 'fixed', bottom: '30px', right: '30px', backgroundColor: '#25D366', width: '60px', height: '60px', borderRadius: '50%', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 100 }}>
-        <span style={{ fontSize: '30px' }}>💬</span>
+      {/* --- BOTÓN WHATSAPP RENOVADO --- */}
+      <a 
+        href="https://wa.me/56966862346" 
+        target="_blank" 
+        className="pill-whatsapp"
+        style={{ 
+          position: 'fixed', 
+          bottom: '30px', 
+          right: '30px', 
+          backgroundColor: '#25D366', 
+          padding: '12px 24px',
+          borderRadius: '50px',
+          display: 'flex', 
+          justifyContent: 'center', 
+          alignItems: 'center', 
+          gap: '12px',
+          textDecoration: 'none', 
+          zIndex: 100, 
+          boxShadow: '0 10px 20px rgba(0,0,0,0.3)',
+          color: 'white',
+          fontWeight: '700'
+        }}
+      >
+        <span style={{ fontSize: '24px' }}>💬</span>
+        <span style={{ fontSize: '15px' }}>¿Cómo puedo ayudarte?</span>
       </a>
 
     </div>

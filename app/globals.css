@@ -125,3 +125,11 @@ button {
 
 .pill-whatsapp { transition: transform 0.3s ease, box-shadow 0.3s ease; }
 .pill-whatsapp:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4); }
+
+/* 📱 Touch target safety — ensure 44px min on mobile */
+@media (pointer: coarse) {
+  .pill-whatsapp {
+    padding: 14px 28px !important;
+    min-height: 52px;
+  }
+}

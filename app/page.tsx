@@ -80,10 +80,10 @@ export default function HomePage() {
                   <h2 style={{ fontSize: '20px', fontWeight: '900', marginBottom: '30px', textTransform: 'uppercase' }}>Confirmar <span className="text-brand">Ingreso</span></h2>
                   <input name="nombre" required placeholder="tu nombre" className="bg-input" style={{ width: '100%', border: '1px solid var(--border-input)', padding: '15px', borderRadius: '15px', color: 'white', marginBottom: '15px', outline: 'none' }} />
                   <input name="email" type="email" required placeholder="alumno@endorfitness.cl" className="bg-input" style={{ width: '100%', border: '1px solid var(--border-input)', padding: '15px', borderRadius: '15px', color: 'white', marginBottom: '25px', outline: 'none' }} />
-                  <button disabled={loading} style={{ width: '100%', backgroundColor: 'var(--color-brand)', color: 'black', padding: '18px', borderRadius: '15px', fontWeight: '800', border: 'none', cursor: 'pointer' }}>
+                  <button disabled={loading} style={{ width: '100%', backgroundColor: 'var(--color-brand)', color: 'black', padding: '18px', borderRadius: '15px', fontWeight: '800', border: 'none', cursor: 'pointer', minHeight: '54px' }}>
                     {loading ? 'SINCRONIZANDO...' : 'CONFIRMAR INGRESO'}
                   </button>
-                  <p onClick={() => setShowForm(false)} style={{ textAlign: 'center', marginTop: '15px', fontSize: '12px', color: 'var(--text-muted)', cursor: 'pointer' }}>VOLVER ATRÁS</p>
+                  <button onClick={() => setShowForm(false)} style={{ display: 'block', width: '100%', marginTop: '15px', padding: '12px 0', fontSize: '12px', color: 'var(--text-muted)', cursor: 'pointer', background: 'none', border: 'none', minHeight: '44px', textAlign: 'center' }}>VOLVER ATRÁS</button>
                 </form>
               ) : (
                 <div style={{ textAlign: 'center' }}><h3>¡REGISTRO EXITOSO!</h3><p className="text-brand">Dalo todo en la clase 💪🏻</p></div>
@@ -93,12 +93,15 @@ export default function HomePage() {
         </div>
       </header>
 
-      {/* --- SECCIÓN: MÁS QUE UN STUDIO (Iconos) --- */}
-      <section className="bg-secondary" style={{ padding: '80px 20px' }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto', textAlign: 'center' }}>
-          <h2 style={{ fontSize: '32px', fontWeight: '900', textTransform: 'uppercase', marginBottom: '60px' }}>
-            MÁS QUE UN <span className="text-brand">STUDIO</span>
-          </h2>
+      {/* --- SECCIÓN: MÁS QUE UN STUDIO (valores en grid vertical) --- */}
+      <section className="bg-secondary" style={{ padding: '100px 20px' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          <div style={{ marginBottom: '70px', maxWidth: '600px' }}>
+            <span style={{ fontSize: '13px', fontWeight: '700', color: 'var(--color-brand)', letterSpacing: '3px', textTransform: 'uppercase' }}>NUESTRO ENFOQUE</span>
+            <h2 style={{ fontSize: 'clamp(28px, 5vw, 48px)', fontWeight: '900', textTransform: 'uppercase', lineHeight: '1', marginTop: '15px' }}>
+              MÁS QUE UN <span className="text-brand">STUDIO</span>
+            </h2>
+          </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '30px' }}>
             {[
               { 
@@ -175,50 +178,61 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* --- RECONSTRUCCIÓN DE CASILLAS ORIGINALES --- */}
-      <section className="bg-tertiary" style={{ padding: '80px 20px', borderTop: '1px solid var(--border-subtle)' }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '30px' }}>
-          {[
-            { 
-              icon: (
-                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="var(--color-brand)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M18 4C12 4 7 9 7 15c0 5 3 8 4 9l-1 8h16l-1-8c1-1 4-4 4-9 0-6-5-11-11-11z"/>
-                  <path d="M13 21c2 1 5 2 5 2s3-1 5-2"/>
-                  <path d="M15 13v3"/>
-                  <path d="M21 13v3"/>
-                  <path d="M10 28l2-2"/>
-                  <path d="M26 28l-2-2"/>
-                </svg>
-              ), title: 'ALTO RENDIMIENTO', text: 'Programas diseñados para maximizar tus capacidades físicas mediante el control metabólico.' 
-            },
-            { 
-              icon: (
-                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="var(--color-brand)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="14" cy="12" r="4"/>
-                  <circle cx="22" cy="12" r="4"/>
-                  <path d="M8 28c0-4 3-7 6-7h8c3 0 6 3 6 7"/>
-                  <path d="M18 21v4"/>
-                  <path d="M15 23h6"/>
-                </svg>
-              ), title: 'STAFF EXPERTO', text: 'Atención personalizada con profesionales dedicados a guiar cada paso de tu entrenamiento.' 
-            },
-            { 
-              icon: (
-                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="var(--color-brand)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M18 4C12 4 6 10 6 16c0 8 12 16 12 16s12-8 12-16c0-6-6-12-12-12z"/>
-                  <circle cx="18" cy="16" r="4"/>
-                  <path d="M18 12v-2"/>
-                  <path d="M18 20v-2"/>
-                </svg>
-              ), title: 'ESTAMOS EN CAÑETE', text: 'Un espacio equipado con tecnología de punta para tu bienestar físico y mental.' 
-            }
-          ].map((item, i) => (
-            <div key={i} className="bg-card" style={{ padding: '40px', borderRadius: '30px', border: '1px solid var(--border-subtle)' }}>
-              <div style={{ marginBottom: '15px', display: 'flex', justifyContent: 'center' }}>{item.icon}</div>
-              <h3 className="text-brand" style={{ marginBottom: '10px', fontSize: '14px', fontWeight: '800', textTransform: 'uppercase' }}>{item.title}</h3>
-              <p className="text-muted" style={{ fontSize: '14px', lineHeight: '1.6' }}>{item.text}</p>
-            </div>
-          ))}
+      {/* --- SECCIÓN: POR QUÉ ELEGIRNOS (cards horizontales) --- */}
+      <section className="bg-tertiary" style={{ padding: '100px 20px', borderTop: '1px solid var(--border-subtle)' }}>
+        <div style={{ maxWidth: '900px', margin: '0 auto' }}>
+          <div style={{ marginBottom: '60px', textAlign: 'center' }}>
+            <h2 style={{ fontSize: 'clamp(28px, 5vw, 48px)', fontWeight: '900', textTransform: 'uppercase', lineHeight: '1' }}>
+              POR QUÉ <span className="text-brand">ELEGIRNOS</span>
+            </h2>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+            {[
+              { 
+                icon: (
+                  <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="var(--color-brand)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M20 4C13 4 8 9 8 16c0 6 3 9 5 11l-1 9h16l-1-9c2-2 5-5 5-11 0-7-5-12-12-12z"/>
+                    <path d="M14 23c2 2 6 2 6 2s4 0 6-2"/>
+                    <path d="M16 14v4"/>
+                    <path d="M24 14v4"/>
+                    <path d="M11 30l3-3"/>
+                    <path d="M29 30l-3-3"/>
+                  </svg>
+                ), title: 'ALTO RENDIMIENTO', text: 'Programas diseñados para maximizar tus capacidades físicas mediante el control metabólico.' 
+              },
+              { 
+                icon: (
+                  <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="var(--color-brand)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="15" cy="13" r="5"/>
+                    <circle cx="25" cy="13" r="5"/>
+                    <path d="M8 32c0-5 3-9 7-9h10c4 0 7 4 7 9"/>
+                    <path d="M20 23v5"/>
+                    <path d="M17 26h6"/>
+                  </svg>
+                ), title: 'STAFF EXPERTO', text: 'Atención personalizada con profesionales dedicados a guiar cada paso de tu entrenamiento.' 
+              },
+              { 
+                icon: (
+                  <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="var(--color-brand)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M20 4C13 4 6 11 6 18c0 10 14 18 14 18s14-8 14-18c0-7-7-14-14-14z"/>
+                    <circle cx="20" cy="18" r="5"/>
+                    <path d="M20 13v-2"/>
+                    <path d="M20 23v-2"/>
+                  </svg>
+                ), title: 'ESTAMOS EN CAÑETE', text: 'Un espacio equipado con tecnología de punta para tu bienestar físico y mental.' 
+              }
+            ].map((item, i) => (
+              <div key={i} className="bg-card" style={{ display: 'flex', alignItems: 'center', gap: '24px', padding: '28px 32px', borderRadius: '20px', border: '1px solid var(--border-subtle)' }}>
+                <div style={{ flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', width: '64px', height: '64px', borderRadius: '16px', border: '1px solid var(--border-subtle)', backgroundColor: 'var(--bg-secondary)' }}>
+                  {item.icon}
+                </div>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <h3 className="text-brand" style={{ marginBottom: '6px', fontSize: '15px', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '0.5px' }}>{item.title}</h3>
+                  <p className="text-muted" style={{ fontSize: '14px', lineHeight: '1.6', margin: 0 }}>{item.text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

@@ -2,13 +2,39 @@
 @tailwind components;
 @tailwind utilities;
 
-/* 🎨 Variables base del diseño */
+/* 🎨 Design Tokens — Endorfitness Brand */
 :root {
-  --background: #0a0a0a;
-  --foreground: #ededed;
-  --primary: #ea580c; /* naranja */
-  --card: #171717;
-  --border: #262626;
+  /* Brand */
+  --color-brand: #39FF14;
+  --color-brand-dim: #2ecc10;
+
+  /* Backgrounds */
+  --bg-primary: #050505;
+  --bg-secondary: #080808;
+  --bg-tertiary: #0a0a0a;
+  --bg-surface: #111111;
+  --bg-card: #111111;
+  --bg-input: #000000;
+
+  /* Text */
+  --text-primary: #ffffff;
+  --text-secondary: #cccccc;
+  --text-muted: #999999;
+  --text-dim: #666666;
+
+  /* Borders */
+  --border-subtle: #222222;
+  --border-input: #333333;
+
+  /* WhatsApp */
+  --color-whatsapp: #25D366;
+
+  /* Legacy aliases (backward compat) */
+  --background: var(--bg-tertiary);
+  --foreground: var(--text-primary);
+  --primary: var(--color-brand);
+  --card: var(--bg-card);
+  --border: var(--border-subtle);
 }
 
 /* 🧱 Reset base */
@@ -44,7 +70,7 @@ button {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #ea580c;
+  background: var(--color-brand);
   border-radius: 10px;
 }
 
@@ -58,3 +84,44 @@ button {
 button {
   transition: all 0.2s ease;
 }
+
+/* 🏷️ Endorfitness utility classes */
+.bg-primary { background-color: var(--bg-primary); }
+.bg-secondary { background-color: var(--bg-secondary); }
+.bg-tertiary { background-color: var(--bg-tertiary); }
+.bg-surface { background-color: var(--bg-surface); }
+.bg-card { background-color: var(--bg-card); }
+.bg-input { background-color: var(--bg-input); }
+
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-muted { color: var(--text-muted); }
+.text-brand { color: var(--color-brand); }
+
+.border-subtle { border-color: var(--border-subtle); }
+.border-input { border-color: var(--border-input); }
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade { animation: fadeIn 0.8s ease-out; }
+
+.hero-overlay {
+  background: linear-gradient(to bottom, rgba(5,5,5,0.7) 0%, rgba(5,5,5,0.9) 100%);
+}
+
+.modern-title {
+  font-size: clamp(35px, 6vw, 60px);
+  font-weight: 950;
+  text-transform: uppercase;
+  color: var(--color-brand);
+  letter-spacing: -2px;
+  line-height: 0.9;
+  margin-bottom: 60px;
+  text-align: center;
+}
+
+.pill-whatsapp { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.pill-whatsapp:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4); }

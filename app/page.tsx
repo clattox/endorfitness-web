@@ -11,10 +11,6 @@ export default function HomePage() {
   const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
   const [showForm, setShowForm] = useState(false);
-  
-  const neonGreen = '#39FF14';
-  const darkBackground = '#050505';
-  const cardBg = '#111';
 
   useEffect(() => {
     if (sent) {
@@ -49,61 +45,43 @@ export default function HomePage() {
   };
 
   return (
-    <div style={{ backgroundColor: darkBackground, minHeight: '100vh', color: 'white', fontFamily: 'system-ui, sans-serif', position: 'relative', overflowX: 'hidden' }}>
-      
-      <style dangerouslySetInnerHTML={{ __html: `
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        .animate-fade { animation: fadeIn 0.8s ease-out; }
-        .hero-overlay { background: linear-gradient(to bottom, rgba(5,5,5,0.7) 0%, rgba(5,5,5,0.9) 100%); }
-        .modern-title { 
-          font-size: clamp(35px, 6vw, 60px); 
-          font-weight: 950; 
-          text-transform: uppercase; 
-          color: ${neonGreen}; 
-          letter-spacing: -2px;
-          line-height: 0.9;
-          margin-bottom: 60px;
-          text-align: center;
-        }
-        .pill-whatsapp { transition: transform 0.3s ease, box-shadow 0.3s ease; }
-        .pill-whatsapp:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4); }
-      `}} />
+    <div className="bg-primary" style={{ minHeight: '100vh', fontFamily: 'system-ui, sans-serif', position: 'relative', overflowX: 'hidden' }}>
 
       {/* --- NAVEGACIÓN --- */}
       <nav style={{ padding: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', maxWidth: '1200px', margin: '0 auto', position: 'relative', zIndex: 20 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
           <span style={{ fontSize: '24px' }}>🧠</span>
-          <span style={{ fontWeight: '800' }}>STUDIO <span style={{ color: neonGreen }}>ENDORFITNESS</span></span>
+          <span style={{ fontWeight: '800' }}>STUDIO <span className="text-brand">ENDORFITNESS</span></span>
         </div>
       </nav>
 
       {/* --- HERO --- */}
-      <header style={{ height: '70vh', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundImage: 'url("/Images/gym-local.jpeg")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <header style={{ minHeight: '100svh', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundImage: 'url("/Images/gym-local.jpeg")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div className="hero-overlay" style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, zIndex: 1 }}></div>
-        <div style={{ position: 'relative', zIndex: 10, textAlign: 'center', padding: '0 20px' }} className="animate-fade">
+        <div style={{ position: 'relative', zIndex: 10, textAlign: 'center', padding: '80px 20px' }} className="animate-fade">
           {!showForm ? (
             <>
               <h1 style={{ fontSize: 'clamp(40px, 8vw, 80px)', fontWeight: '900', textTransform: 'uppercase', lineHeight: '1', marginBottom: '20px' }}>
-                Potencia tu <span style={{ color: neonGreen }}>Mente</span><br/>Entrena tu Cuerpo
+                Potencia tu <span className="text-brand">Mente</span><br/>Entrena tu Cuerpo
               </h1>
-              <button onClick={() => setShowForm(true)} style={{ backgroundColor: neonGreen, color: 'black', padding: '18px 35px', borderRadius: '40px', fontWeight: '800', border: 'none', cursor: 'pointer' }}>
+              <button onClick={() => setShowForm(true)} style={{ backgroundColor: 'var(--color-brand)', color: 'black', padding: '18px 35px', borderRadius: '40px', fontWeight: '800', border: 'none', cursor: 'pointer' }}>
                 REGISTRAR ASISTENCIA
               </button>
             </>
           ) : (
-            <div style={{ width: '100%', maxWidth: '400px', backgroundColor: '#111', padding: '40px', borderRadius: '30px', border: '1px solid #222', textAlign: 'left', margin: '0 auto' }}>
+            <div className="bg-surface" style={{ width: '100%', maxWidth: '400px', padding: '40px', borderRadius: '30px', border: '1px solid var(--border-subtle)', textAlign: 'left', margin: '0 auto' }}>
               {!sent ? (
                 <form onSubmit={handleSubmit}>
-                  <h2 style={{ fontSize: '20px', fontWeight: '900', marginBottom: '30px', textTransform: 'uppercase' }}>Confirmar <span style={{ color: neonGreen }}>Ingreso</span></h2>
-                  <input name="nombre" required placeholder="tu nombre" style={{ width: '100%', backgroundColor: '#000', border: '1px solid #333', padding: '15px', borderRadius: '15px', color: 'white', marginBottom: '15px', outline: 'none' }} />
-                  <input name="email" type="email" required placeholder="alumno@endorfitness.cl" style={{ width: '100%', backgroundColor: '#000', border: '1px solid #333', padding: '15px', borderRadius: '15px', color: 'white', marginBottom: '25px', outline: 'none' }} />
-                  <button disabled={loading} style={{ width: '100%', backgroundColor: neonGreen, color: 'black', padding: '18px', borderRadius: '15px', fontWeight: '800', border: 'none', cursor: 'pointer' }}>
+                  <h2 style={{ fontSize: '20px', fontWeight: '900', marginBottom: '30px', textTransform: 'uppercase' }}>Confirmar <span className="text-brand">Ingreso</span></h2>
+                  <input name="nombre" required placeholder="tu nombre" className="bg-input" style={{ width: '100%', border: '1px solid var(--border-input)', padding: '15px', borderRadius: '15px', color: 'white', marginBottom: '15px', outline: 'none' }} />
+                  <input name="email" type="email" required placeholder="alumno@endorfitness.cl" className="bg-input" style={{ width: '100%', border: '1px solid var(--border-input)', padding: '15px', borderRadius: '15px', color: 'white', marginBottom: '25px', outline: 'none' }} />
+                  <button disabled={loading} style={{ width: '100%', backgroundColor: 'var(--color-brand)', color: 'black', padding: '18px', borderRadius: '15px', fontWeight: '800', border: 'none', cursor: 'pointer' }}>
                     {loading ? 'SINCRONIZANDO...' : 'CONFIRMAR INGRESO'}
                   </button>
-                  <p onClick={() => setShowForm(false)} style={{ textAlign: 'center', marginTop: '15px', fontSize: '12px', color: '#666', cursor: 'pointer' }}>VOLVER ATRÁS</p>
+                  <p onClick={() => setShowForm(false)} style={{ textAlign: 'center', marginTop: '15px', fontSize: '12px', color: 'var(--text-muted)', cursor: 'pointer' }}>VOLVER ATRÁS</p>
                 </form>
               ) : (
-                <div style={{ textAlign: 'center' }}><h3>¡REGISTRO EXITOSO!</h3><p style={{ color: neonGreen }}>Dalo todo en la clase 💪🏻</p></div>
+                <div style={{ textAlign: 'center' }}><h3>¡REGISTRO EXITOSO!</h3><p className="text-brand">Dalo todo en la clase 💪🏻</p></div>
               )}
             </div>
           )}
@@ -111,10 +89,10 @@ export default function HomePage() {
       </header>
 
       {/* --- SECCIÓN: MÁS QUE UN STUDIO (Iconos) --- */}
-      <section style={{ padding: '80px 20px', backgroundColor: '#080808' }}>
+      <section className="bg-secondary" style={{ padding: '80px 20px' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto', textAlign: 'center' }}>
           <h2 style={{ fontSize: '32px', fontWeight: '900', textTransform: 'uppercase', marginBottom: '60px' }}>
-            MÁS QUE UN <span style={{ color: neonGreen }}>STUDIO</span>
+            MÁS QUE UN <span className="text-brand">STUDIO</span>
           </h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '30px' }}>
             {[
@@ -126,7 +104,7 @@ export default function HomePage() {
               <div key={i} style={{ textAlign: 'center' }}>
                 <div style={{ fontSize: '40px', marginBottom: '20px' }}>{box.icon}</div>
                 <h3 style={{ fontSize: '16px', fontWeight: '900', marginBottom: '15px', color: 'white' }}>{box.title}</h3>
-                <p style={{ color: '#666', fontSize: '14px', lineHeight: '1.6' }}>{box.text}</p>
+                <p className="text-muted" style={{ fontSize: '14px', lineHeight: '1.6' }}>{box.text}</p>
               </div>
             ))}
           </div>
@@ -146,25 +124,25 @@ export default function HomePage() {
           ].map((plan, i) => (
             <div key={i} style={{ textAlign: 'left' }}>
               <img src={plan.img} alt={plan.title} style={{ width: '100%', borderRadius: '30px', height: '400px', objectFit: 'cover', marginBottom: '25px' }} />
-              <h3 style={{ color: neonGreen, fontSize: '28px', fontWeight: '900', marginBottom: '15px', lineHeight: '1.1' }}>{plan.title}</h3>
-              <p style={{ color: '#aaa', fontSize: '16px', lineHeight: '1.6' }}>{plan.text}</p>
+              <h3 className="text-brand" style={{ fontSize: '28px', fontWeight: '900', marginBottom: '15px', lineHeight: '1.1' }}>{plan.title}</h3>
+              <p className="text-secondary" style={{ fontSize: '16px', lineHeight: '1.6' }}>{plan.text}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* --- RECONSTRUCCIÓN DE CASILLAS ORIGINALES --- */}
-      <section style={{ backgroundColor: '#0a0a0a', padding: '80px 20px', borderTop: '1px solid #111' }}>
+      <section className="bg-tertiary" style={{ padding: '80px 20px', borderTop: '1px solid var(--border-subtle)' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '30px' }}>
           {[
             { icon: '⚡', title: 'ALTO RENDIMIENTO', text: 'Programas diseñados para maximizar tus capacidades físicas mediante el control metabólico.' },
             { icon: '👥', title: 'STAFF EXPERTO', text: 'Atención personalizada con profesionales dedicados a guiar cada paso de tu entrenamiento.' },
             { icon: '📍', title: 'ESTAMOS EN CAÑETE', text: 'Un espacio equipado con tecnología de punta para tu bienestar físico y mental.' }
           ].map((item, i) => (
-            <div key={i} style={{ padding: '40px', backgroundColor: cardBg, borderRadius: '30px', border: '1px solid #222' }}>
+            <div key={i} className="bg-card" style={{ padding: '40px', borderRadius: '30px', border: '1px solid var(--border-subtle)' }}>
               <div style={{ fontSize: '30px', marginBottom: '15px' }}>{item.icon}</div>
-              <h3 style={{ color: neonGreen, marginBottom: '10px', fontSize: '14px', fontWeight: '800', textTransform: 'uppercase' }}>{item.title}</h3>
-              <p style={{ color: '#666', fontSize: '14px', lineHeight: '1.6' }}>{item.text}</p>
+              <h3 className="text-brand" style={{ marginBottom: '10px', fontSize: '14px', fontWeight: '800', textTransform: 'uppercase' }}>{item.title}</h3>
+              <p className="text-muted" style={{ fontSize: '14px', lineHeight: '1.6' }}>{item.text}</p>
             </div>
           ))}
         </div>
@@ -176,7 +154,7 @@ export default function HomePage() {
         target="_blank" 
         className="pill-whatsapp"
         style={{ 
-          position: 'fixed', bottom: '30px', right: '30px', backgroundColor: '#25D366', 
+          position: 'fixed', bottom: '30px', right: '30px', backgroundColor: 'var(--color-whatsapp)', 
           padding: '12px 24px', borderRadius: '50px', display: 'flex', justifyContent: 'center', 
           alignItems: 'center', gap: '12px', textDecoration: 'none', zIndex: 100, 
           boxShadow: '0 10px 20px rgba(0,0,0,0.3)', color: 'white', fontWeight: '700' 

@@ -50,7 +50,12 @@ export default function HomePage() {
       {/* --- NAVEGACIÓN --- */}
       <nav style={{ padding: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', maxWidth: '1200px', margin: '0 auto', position: 'relative', zIndex: 20 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <span style={{ fontSize: '24px' }}>🧠</span>
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="var(--color-brand)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M14 3C10 3 7 6 7 10c0 3 2 5 3 6l-1 8h10l-1-8c1-1 3-3 3-6 0-4-3-7-7-7z"/>
+            <path d="M10 14c2 1 4 1 4 1s2 0 4-1"/>
+            <path d="M12 8v3"/>
+            <path d="M16 8v3"/>
+          </svg>
           <span style={{ fontWeight: '800' }}>STUDIO <span className="text-brand">ENDORFITNESS</span></span>
         </div>
       </nav>
@@ -96,13 +101,52 @@ export default function HomePage() {
           </h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '30px' }}>
             {[
-              { icon: '🤍', title: 'ESPACIO SEGURO', text: 'Entrena sin presiones en un ambiente diseñado para tu comodidad y respeto.' },
-              { icon: '📅', title: 'SISTEMA DE HORARIOS', text: 'Cupos asegurados mediante nuestro sistema flexible de registro inteligente.' },
-              { icon: '✨', title: 'COMUNIDAD', text: 'No entrenas sola, te integras a un grupo que celebra cada uno de tus avances.' },
-              { icon: '📋', title: 'PLANIFICACIÓN', text: 'Entrena con propósito bajo la guía de profesionales en cada paso.' }
+              { 
+                icon: (
+                  <svg width="44" height="44" viewBox="0 0 44 44" fill="none" stroke="var(--color-brand)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M22 6C16 6 11 11 11 17c0 5 3 8 5 10l-2 12h16l-2-12c2-2 5-5 5-10 0-6-5-11-11-11z"/>
+                    <path d="M16 24c3 2 6 2 6 2s3 0 6-2"/>
+                    <path d="M18 14v4"/>
+                    <path d="M26 14v4"/>
+                  </svg>
+                ), title: 'ESPACIO SEGURO', text: 'Entrena sin presiones en un ambiente diseñado para tu comodidad y respeto.' 
+              },
+              { 
+                icon: (
+                  <svg width="44" height="44" viewBox="0 0 44 44" fill="none" stroke="var(--color-brand)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="6" y="8" width="32" height="28" rx="3"/>
+                    <line x1="6" y1="16" x2="38" y2="16"/>
+                    <line x1="16" y1="8" x2="16" y2="36"/>
+                    <line x1="28" y1="8" x2="28" y2="36"/>
+                    <line x1="6" y1="24" x2="38" y2="24"/>
+                    <line x1="6" y1="32" x2="38" y2="32"/>
+                  </svg>
+                ), title: 'SISTEMA DE HORARIOS', text: 'Cupos asegurados mediante nuestro sistema flexible de registro inteligente.' 
+              },
+              { 
+                icon: (
+                  <svg width="44" height="44" viewBox="0 0 44 44" fill="none" stroke="var(--color-brand)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="22" cy="22" r="16"/>
+                    <path d="M14 22c2 4 6 6 8 6s6-2 8-6"/>
+                    <path d="M18 18v2"/>
+                    <path d="M26 18v2"/>
+                  </svg>
+                ), title: 'COMUNIDAD', text: 'No entrenas sola, te integras a un grupo que celebra cada uno de tus avances.' 
+              },
+              { 
+                icon: (
+                  <svg width="44" height="44" viewBox="0 0 44 44" fill="none" stroke="var(--color-brand)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 8h20l4 6v22a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2V14l4-6z"/>
+                    <path d="M8 14h28"/>
+                    <path d="M18 20h8v12h-8z"/>
+                    <path d="M18 20l-2-6"/>
+                    <path d="M26 20l2-6"/>
+                  </svg>
+                ), title: 'PLANIFICACIÓN', text: 'Entrena con propósito bajo la guía de profesionales en cada paso.' 
+              }
             ].map((box, i) => (
               <div key={i} style={{ textAlign: 'center' }}>
-                <div style={{ fontSize: '40px', marginBottom: '20px' }}>{box.icon}</div>
+                <div style={{ marginBottom: '20px', display: 'flex', justifyContent: 'center' }}>{box.icon}</div>
                 <h3 style={{ fontSize: '16px', fontWeight: '900', marginBottom: '15px', color: 'white' }}>{box.title}</h3>
                 <p className="text-muted" style={{ fontSize: '14px', lineHeight: '1.6' }}>{box.text}</p>
               </div>
@@ -135,12 +179,42 @@ export default function HomePage() {
       <section className="bg-tertiary" style={{ padding: '80px 20px', borderTop: '1px solid var(--border-subtle)' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '30px' }}>
           {[
-            { icon: '⚡', title: 'ALTO RENDIMIENTO', text: 'Programas diseñados para maximizar tus capacidades físicas mediante el control metabólico.' },
-            { icon: '👥', title: 'STAFF EXPERTO', text: 'Atención personalizada con profesionales dedicados a guiar cada paso de tu entrenamiento.' },
-            { icon: '📍', title: 'ESTAMOS EN CAÑETE', text: 'Un espacio equipado con tecnología de punta para tu bienestar físico y mental.' }
+            { 
+              icon: (
+                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="var(--color-brand)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M18 4C12 4 7 9 7 15c0 5 3 8 4 9l-1 8h16l-1-8c1-1 4-4 4-9 0-6-5-11-11-11z"/>
+                  <path d="M13 21c2 1 5 2 5 2s3-1 5-2"/>
+                  <path d="M15 13v3"/>
+                  <path d="M21 13v3"/>
+                  <path d="M10 28l2-2"/>
+                  <path d="M26 28l-2-2"/>
+                </svg>
+              ), title: 'ALTO RENDIMIENTO', text: 'Programas diseñados para maximizar tus capacidades físicas mediante el control metabólico.' 
+            },
+            { 
+              icon: (
+                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="var(--color-brand)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="14" cy="12" r="4"/>
+                  <circle cx="22" cy="12" r="4"/>
+                  <path d="M8 28c0-4 3-7 6-7h8c3 0 6 3 6 7"/>
+                  <path d="M18 21v4"/>
+                  <path d="M15 23h6"/>
+                </svg>
+              ), title: 'STAFF EXPERTO', text: 'Atención personalizada con profesionales dedicados a guiar cada paso de tu entrenamiento.' 
+            },
+            { 
+              icon: (
+                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="var(--color-brand)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M18 4C12 4 6 10 6 16c0 8 12 16 12 16s12-8 12-16c0-6-6-12-12-12z"/>
+                  <circle cx="18" cy="16" r="4"/>
+                  <path d="M18 12v-2"/>
+                  <path d="M18 20v-2"/>
+                </svg>
+              ), title: 'ESTAMOS EN CAÑETE', text: 'Un espacio equipado con tecnología de punta para tu bienestar físico y mental.' 
+            }
           ].map((item, i) => (
             <div key={i} className="bg-card" style={{ padding: '40px', borderRadius: '30px', border: '1px solid var(--border-subtle)' }}>
-              <div style={{ fontSize: '30px', marginBottom: '15px' }}>{item.icon}</div>
+              <div style={{ marginBottom: '15px', display: 'flex', justifyContent: 'center' }}>{item.icon}</div>
               <h3 className="text-brand" style={{ marginBottom: '10px', fontSize: '14px', fontWeight: '800', textTransform: 'uppercase' }}>{item.title}</h3>
               <p className="text-muted" style={{ fontSize: '14px', lineHeight: '1.6' }}>{item.text}</p>
             </div>
@@ -160,7 +234,11 @@ export default function HomePage() {
           boxShadow: '0 10px 20px rgba(0,0,0,0.3)', color: 'white', fontWeight: '700' 
         }}
       >
-        <span style={{ fontSize: '24px' }}>💬</span>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M21 12a9 9 0 0 1-13 8l-4 1 1-4A9 9 0 1 1 21 12z"/>
+          <path d="M9 10h6"/>
+          <path d="M9 14h4"/>
+        </svg>
         <span style={{ fontSize: '15px' }}>¿Cómo puedo ayudarte?</span>
       </a>
 

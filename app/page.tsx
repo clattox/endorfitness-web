@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import { createClient } from '@supabase/supabase-js';
-import Link from 'next/link';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
@@ -76,9 +75,6 @@ export default function HomePage() {
           <span style={{ fontSize: '24px' }}>🧠</span>
           <span style={{ fontWeight: '800' }}>STUDIO <span style={{ color: neonGreen }}>ENDORFITNESS</span></span>
         </div>
-        <Link href="/Admin" style={{ color: neonGreen, textDecoration: 'none', fontSize: '12px', fontWeight: '600', border: `1px solid ${neonGreen}44`, padding: '8px 16px', borderRadius: '20px' }}>
-          ACCESO STAFF
-        </Link>
       </nav>
 
       {/* --- HERO --- */}
